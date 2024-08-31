@@ -109,23 +109,23 @@ export default function App() {
           <h2>
             Webルーレット
           </h2>
-          <div class="wrapper">
+          <div className="wrapper">
             <Roulette roulette={roulette} />
             <textarea id="textarea" value={textarea} onChange={textareaChange}></textarea>
             <div>
               <input id="max" type="number" onChange={changeMaxNumber} onKeyDown={keyDownMaxNumber}></input>
-              <button type="button" class="btn btn--blue" onClick={createSequential}>連番生成</button>
+              <button type="button" className="btn btn--blue" onClick={createSequential}>連番生成</button>
             </div>
             <div>
-              <button type="button" class="btn btn--blue" onClick={onStart}>開始</button>
-              <button type="button" class="btn btn--red" onClick={onStop}>停止</button>
-              <button type="button" class="btn btn--orange" onClick={onContinueStart}>連続抽選</button>
+              <button type="button" className="btn btn--blue" onClick={onStart}>開始</button>
+              <button type="button" className="btn btn--red" onClick={onStop}>停止</button>
+              <button type="button" className="btn btn--orange" onClick={onContinueStart}>連続抽選</button>
               {result ? <p>抽選結果：{result}</p> : <p></p>}
               {continueResults ? <div>
                 <p>連続抽選結果：</p>
                 <>
                   {continueResults.map((r, i) => {
-                    return <div class="continue-result" key={i}>{r}</div>;
+                    return <div className="continue-result" key={i}>{r}</div>;
                   })}
                 </>
                 </div> : <p></p>}
