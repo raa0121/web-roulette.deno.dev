@@ -71,10 +71,12 @@ export default function App() {
   }
 
   const onContinueStart = () => {
+    onStart();
     onStop();
-    setContinueResults(continueResults.concat([result]));
+    if (!items.map((i) => i.name).includes(result)) {
+      setContinueResults(continueResults.concat([result]));
+    }
     const filteredNames = items.map((i) => i.name).filter((i) => i != result);
-    console.log(filteredNames);
     const newItems: Item[] = [];
     for (const [key, value] of filteredNames.entries()) {
       newItems.push({name: value, bg: colors[key % 7]});
