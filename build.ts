@@ -6,6 +6,7 @@ const builder = createBuilder({
 });
 
 builder.ignore([
+  "./LICENSE",
   "./README.md",
   "./importMap.json",
   "./.git/**",
