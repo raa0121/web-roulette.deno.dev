@@ -1,0 +1,97 @@
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+html,
+body {
+  margin: 0;
+  padding: 1rem;
+  font-family: monospace;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+p {
+  font-size: 1.6rem;
+  margin: 0 auto 1em;
+}
+
+input[type="number"] {
+  font-size: 1.6rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 960px;
+  margin: auto;
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #fff;
+  border-radius: 0.5rem;
+}
+
+.btn--blue,
+a.btn--blue {
+  color: #fff;
+  background-color: #007bff;
+}
+.btn--blue:hover,
+a.btn--blue:hover {
+  color: #fff;
+  background: #007cff;
+}
+
+.btn--red,
+a.btn--red {
+  color: #fff;
+  background-color: #dc3545;
+}
+.btn--red:hover,
+a.btn--red:hover {
+  color: #fff;
+  background: #dc3545;
+}
+
+.btn--orange,
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+.continue-result {
+  font-size: 1.6rem;
+}
