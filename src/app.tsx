@@ -132,6 +132,10 @@ export default function App() {
             </div>
           </div>
         </main>
+        <footer>
+          <p>&copy; 2024 raa0121</p>
+          <p>Inspired by <a href="https://jp.piliapp.com/random/wheel/" target="_blank">Web ルーレット</a></p>
+        </footer>
       </body>
     </html>
   );
