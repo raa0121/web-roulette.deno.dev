@@ -24,7 +24,7 @@ jobs:
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
-          project: "raa0121-web-roulette" # Your deploy project name
+          project: "web-roulette" # Your deploy project name
           entrypoint: "server.js"
           root: .ultra
           import-map: importMap.server.json
