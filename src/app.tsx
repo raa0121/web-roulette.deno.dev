@@ -1,5 +1,6 @@
 import useAsset from "ultra/hooks/use-asset.js";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Roulette, useRoulette } from 'react-hook-roulette';
 
 // Twind
@@ -23,6 +24,8 @@ type Item = {
 const ALLOWD = ["-", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Backspace"];
 
 export default function App() {
+  const title = 'Webルーレット';
+  const description = 'Webルーレット';
   const [width, setWidth] = useState(rouletteWidth);
   const [height, setHeight] = useState(rouletteHeight);
   const [items, setItems] = useState<Item[]>([]);
@@ -101,8 +104,21 @@ export default function App() {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <title>Webルーレット</title>
+        <meta name="author" content="raa0121" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Helmet prioritizeSeoTags>
+          <meta name="description" content={description} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@raa0121" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:creator" content="@raa0121" />
+          <meta property="og:url" content="https://web-roulette.deno.dev/" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:image" content="https://web-roulette.deno.dev/raa0121.png" />
+          <title>{title}</title>
+        </Helmet>
         <link rel="shortcut icon" href={useAsset("/favicon.ico")} />
         <link rel="stylesheet" href={useAsset("/style.css")} />
       </head>
