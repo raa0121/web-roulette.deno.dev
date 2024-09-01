@@ -1,7 +1,7 @@
 import useAsset from "ultra/hooks/use-asset.js";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Roulette, useRoulette } from 'react-hook-roulette';
+import { Roulette, useRoulette } from "react-hook-roulette";
 
 // Twind
 import { tw } from "./twind/twind.ts";
@@ -14,18 +14,25 @@ const colors = [
   "royalblue",
   "salmon",
   "wheat",
-]
+];
 
 type Item = {
   name: string;
   bg: string;
-}
+};
 
-const ALLOWD = ["-", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Backspace"];
+const ALLOWD = [
+  "-",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowUp",
+  "ArrowDown",
+  "Backspace",
+];
 
 export default function App() {
-  const title = 'Webルーレット';
-  const description = 'Webルーレット';
+  const title = "Webルーレット";
+  const description = "Webルーレット";
   const [width, setWidth] = useState(rouletteWidth);
   const [height, setHeight] = useState(rouletteHeight);
   const [items, setItems] = useState<Item[]>([]);
@@ -37,11 +44,11 @@ export default function App() {
     const newValue = parseInt(e.target.value, 10);
     if (isNaN(newValue)) {
       e.prevntDefault();
-      return
+      return;
     }
 
     setMax(`${newValue}`);
-  }
+  };
 
   const keyDownMaxNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key.match(/\d/)) {
@@ -52,26 +59,26 @@ export default function App() {
     }
 
     e.prevntDefault();
-  }
+  };
 
   const textareaChange = (e) => {
     setTextarea(e.target.value);
-    const newItems: Item[] = []; 
+    const newItems: Item[] = [];
     for (const [key, value] of e.target.value.split("\n").entries()) {
-      newItems.push({name: value, bg: colors[key % 7]});
+      newItems.push({ name: value, bg: colors[key % 7] });
     }
     setItems(newItems);
-  }
+  };
 
   const createSequential = () => {
-    const seq = Array.from({length: max}, (elm, index) => String(index + 1));
+    const seq = Array.from({ length: max }, (elm, index) => String(index + 1));
     setTextarea(seq.join("\n"));
-    const newItems: Item[] = []; 
+    const newItems: Item[] = [];
     for (const [key, value] of seq.entries()) {
-      newItems.push({name: value, bg: colors[key % 7], color: "black"});
+      newItems.push({ name: value, bg: colors[key % 7], color: "black" });
     }
     setItems(newItems);
-  }
+  };
 
   const onContinueStart = () => {
     onStart();
@@ -82,11 +89,11 @@ export default function App() {
     const filteredNames = items.map((i) => i.name).filter((i) => i != result);
     const newItems: Item[] = [];
     for (const [key, value] of filteredNames.entries()) {
-      newItems.push({name: value, bg: colors[key % 7]});
+      newItems.push({ name: value, bg: colors[key % 7] });
     }
     setTextarea(filteredNames.join("\n"));
     setItems(newItems);
-  }
+  };
 
   const { roulette, onStart, onStop, result } = useRoulette({
     items,
@@ -96,8 +103,8 @@ export default function App() {
         arrow: { bg: "red" },
         label: { defaultColor: "black" },
         pie: { border: true, borderWidth: 1 },
-      }
-    }
+      },
+    },
   });
 
   return (
@@ -116,7 +123,10 @@ export default function App() {
           <meta property="og:url" content="https://web-roulette.deno.dev/" />
           <meta property="og:title" content={title} />
           <meta property="og:description" content={description} />
-          <meta property="og:image" content="https://web-roulette.deno.dev/raa0121.png" />
+          <meta
+            property="og:image"
+            content="https://web-roulette.deno.dev/raa0121.png"
+          />
           <title>{title}</title>
         </Helmet>
         <link rel="shortcut icon" href={useAsset("/favicon.ico")} />
@@ -129,30 +139,64 @@ export default function App() {
           </h2>
           <div className="wrapper">
             <Roulette roulette={roulette} />
-            <textarea id="textarea" value={textarea} onChange={textareaChange}></textarea>
+            <textarea id="textarea" value={textarea} onChange={textareaChange}>
+            </textarea>
             <div>
-              <input id="max" type="number" onChange={changeMaxNumber} onKeyDown={keyDownMaxNumber}></input>
-              <button type="button" className="btn btn--blue" onClick={createSequential}>連番生成</button>
+              <input
+                id="max"
+                type="number"
+                onChange={changeMaxNumber}
+                onKeyDown={keyDownMaxNumber}
+              >
+              </input>
+              <button
+                type="button"
+                className="btn btn--blue"
+                onClick={createSequential}
+              >
+                連番生成
+              </button>
             </div>
             <div>
-              <button type="button" className="btn btn--blue" onClick={onStart}>開始</button>
-              <button type="button" className="btn btn--red" onClick={onStop}>停止</button>
-              <button type="button" className="btn btn--orange" onClick={onContinueStart}>連続抽選</button>
+              <button type="button" className="btn btn--blue" onClick={onStart}>
+                開始
+              </button>
+              <button type="button" className="btn btn--red" onClick={onStop}>
+                停止
+              </button>
+              <button
+                type="button"
+                className="btn btn--orange"
+                onClick={onContinueStart}
+              >
+                連続抽選
+              </button>
               {result ? <p>抽選結果：{result}</p> : <p></p>}
-              {continueResults ? <div>
-                <p>連続抽選結果：</p>
-                <>
-                  {continueResults.map((r, i) => {
-                    return <div className="continue-result" key={i}>{r}</div>;
-                  })}
-                </>
-                </div> : <p></p>}
+              {continueResults
+                ? (
+                  <div>
+                    <p>連続抽選結果：</p>
+                    <>
+                      {continueResults.map((r, i) => {
+                        return (
+                          <div className="continue-result" key={i}>{r}</div>
+                        );
+                      })}
+                    </>
+                  </div>
+                )
+                : <p></p>}
             </div>
           </div>
         </main>
         <footer>
           <p>&copy; 2024 raa0121</p>
-          <p>Inspired by <a href="https://jp.piliapp.com/random/wheel/" target="_blank">Web ルーレット</a></p>
+          <p>
+            Inspired by{" "}
+            <a href="https://jp.piliapp.com/random/wheel/" target="_blank">
+              Web ルーレット
+            </a>
+          </p>
         </footer>
       </body>
     </html>
