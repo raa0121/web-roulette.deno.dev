@@ -65,7 +65,7 @@ export default function App() {
     setTextarea(e.target.value);
     const newItems: Item[] = [];
     for (const [key, value] of e.target.value.split("\n").entries()) {
-      newItems.push({ name: value, bg: colors[key % 7] });
+      newItems.push({ name: value, bg: colors[key % 5], color: "black" });
     }
     setItems(newItems);
   };
@@ -75,7 +75,7 @@ export default function App() {
     setTextarea(seq.join("\n"));
     const newItems: Item[] = [];
     for (const [key, value] of seq.entries()) {
-      newItems.push({ name: value, bg: colors[key % 7], color: "black" });
+      newItems.push({ name: value, bg: colors[key % 5], color: "black" });
     }
     setItems(newItems);
   };
@@ -89,7 +89,7 @@ export default function App() {
     const filteredNames = items.map((i) => i.name).filter((i) => i != result);
     const newItems: Item[] = [];
     for (const [key, value] of filteredNames.entries()) {
-      newItems.push({ name: value, bg: colors[key % 7] });
+      newItems.push({ name: value, bg: colors[key % 5], color: "black" });
     }
     setTextarea(filteredNames.join("\n"));
     setItems(newItems);
