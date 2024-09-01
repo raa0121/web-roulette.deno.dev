@@ -35,6 +35,13 @@ input[type="number"] {
   margin: auto;
 }
 
+@media screen and (max-width:840px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
 .btn,
 a.btn,
 button.btn {
