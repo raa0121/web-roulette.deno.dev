@@ -9,16 +9,17 @@ import { tw } from "./twind/twind.ts";
 const rouletteWidth = 500;
 const rouletteHeight = 500;
 const colors = [
-  "palegreen",
-  "plum",
   "royalblue",
   "salmon",
+  "palegreen",
   "wheat",
+  "plum",
 ];
 
 type Item = {
   name: string;
   bg: string;
+  color: string;
 };
 
 const ALLOWD = [
@@ -61,23 +62,43 @@ export default function App() {
     e.prevntDefault();
   };
 
-  const textareaChange = (e) => {
-    setTextarea(e.target.value);
+  const changeItems = (i: string[]) => {
     const newItems: Item[] = [];
-    for (const [key, value] of e.target.value.split("\n").entries()) {
-      newItems.push({ name: value, bg: colors[key % 5], color: "black" });
+    for (const [key, value] of i.entries()) {
+      const bg = getBgColor(key, i.length);
+      newItems.push({ name: value, bg: bg, color: "black" });
     }
     setItems(newItems);
+  }
+
+  const getBgColor = (index: number, totalCount: number) => {
+    const position = index + 1;
+    // 要素数が5n+1のとき、5n+1個目の要素は"palegreen"
+    if (totalCount % 5 === 1 && position === totalCount) {
+      return "palegreen";
+    }
+    // 要素数が5n+2のとき、5n+1個目の要素は"palegreen"、5n+2個目の要素は"wheat"
+    if (totalCount % 5 === 2) {
+      if (position === totalCount - 1) {
+        return "palegreen";
+      } else if (position === totalCount) {
+        return "wheat";
+      }
+    }
+
+    // 上記条件に該当しない場合、通常の配列から背景色を取得
+    return colors[index % colors.length];
+  }
+
+  const textareaChange = (e) => {
+    setTextarea(e.target.value);
+    changeItems(e.target.value.split("\n"))
   };
 
   const createSequential = () => {
     const seq = Array.from({ length: max }, (elm, index) => String(index + 1));
     setTextarea(seq.join("\n"));
-    const newItems: Item[] = [];
-    for (const [key, value] of seq.entries()) {
-      newItems.push({ name: value, bg: colors[key % 5], color: "black" });
-    }
-    setItems(newItems);
+    changeItems(seq);
   };
 
   const onContinueStart = () => {
@@ -87,12 +108,8 @@ export default function App() {
       setContinueResults(continueResults.concat([result]));
     }
     const filteredNames = items.map((i) => i.name).filter((i) => i != result);
-    const newItems: Item[] = [];
-    for (const [key, value] of filteredNames.entries()) {
-      newItems.push({ name: value, bg: colors[key % 5], color: "black" });
-    }
     setTextarea(filteredNames.join("\n"));
-    setItems(newItems);
+    changeItems(filteredNames);
   };
 
   const { roulette, onStart, onStop, result } = useRoulette({
