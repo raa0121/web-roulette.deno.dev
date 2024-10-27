@@ -36,6 +36,7 @@ export default function App() {
   const [max, setMax] = useState("");
   const [textarea, setTextarea] = useState("");
   const [continueResults, setContinueResults] = useState<string>([]);
+  const [fontSize, setFontSize] = useState(48);
 
   const changeMaxNumber = (e) => {
     const newValue = parseInt(e.target.value, 10);
@@ -65,6 +66,11 @@ export default function App() {
       newItems.push({ name: value, bg: bg, color: "black" });
     }
     setItems(newItems);
+    if (i.length > 18) {
+      setFontSize(32);
+    } else {
+      setFontSize(48);
+    }
   }
 
   const getBgColor = (index: number, totalCount: number) => {
@@ -115,7 +121,7 @@ export default function App() {
       determineAngle: 0,
       style: {
         arrow: { bg: "red" },
-        label: { defaultColor: "black", font: '48px "游ゴシック","Yu Gothic"' },
+        label: { defaultColor: "black", font: `${fontSize}px "游ゴシック","Yu Gothic"` },
         pie: { border: true, borderWidth: 1 },
       },
     },
@@ -185,18 +191,18 @@ export default function App() {
               >
                 連続抽選
               </button>
-              {result ? <p>抽選結果：{result}</p> : <p></p>}
+              {result ? <p className="result">抽選結果：{result}</p> : <p></p>}
               {continueResults
                 ? (
                   <div>
-                    <p>連続抽選結果：</p>
-                    <>
+                    <div className="result">連続抽選結果：</div>
+                    <div className="continue-results">
                       {continueResults.map((r, i) => {
                         return (
-                          <div className="continue-result" key={i}>{r}</div>
+                          <div className="result" key={i}>{r}</div>
                         );
                       })}
-                    </>
+                    </div>
                   </div>
                 )
                 : <p></p>}

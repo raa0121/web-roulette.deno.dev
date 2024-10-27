@@ -16,7 +16,7 @@ body {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 4rem;
 }
 
 p {
@@ -99,10 +99,21 @@ a.btn--orange:hover {
   background: #f56500;
 }
 
-.continue-result {
-  font-size: 2rem;
+.continue-results {
+  width: 180px;
+  text-align: right;
+}
+
+.result {
+  font-size: 3rem;
 }
 
 #textarea {
-  font-size: 2rem;
+  font-size: 3rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
