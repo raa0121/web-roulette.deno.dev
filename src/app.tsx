@@ -6,8 +6,6 @@ import { Roulette, useRoulette } from "react-hook-roulette";
 // Twind
 import { tw } from "./twind/twind.ts";
 
-const rouletteWidth = 500;
-const rouletteHeight = 500;
 const colors = [
   "royalblue",
   "salmon",
@@ -34,8 +32,6 @@ const ALLOWD = [
 export default function App() {
   const title = "Webルーレット";
   const description = "Webルーレット";
-  const [width, setWidth] = useState(rouletteWidth);
-  const [height, setHeight] = useState(rouletteHeight);
   const [items, setItems] = useState<Item[]>([]);
   const [max, setMax] = useState("");
   const [textarea, setTextarea] = useState("");
@@ -115,10 +111,11 @@ export default function App() {
   const { roulette, onStart, onStop, result } = useRoulette({
     items,
     options: {
+      size: 600,
       determineAngle: 0,
       style: {
         arrow: { bg: "red" },
-        label: { defaultColor: "black" },
+        label: { defaultColor: "black", font: '48px "游ゴシック","Yu Gothic"' },
         pie: { border: true, borderWidth: 1 },
       },
     },
