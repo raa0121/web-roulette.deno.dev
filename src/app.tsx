@@ -37,6 +37,7 @@ export default function App() {
   const [textarea, setTextarea] = useState("");
   const [continueResults, setContinueResults] = useState<string>([]);
   const [fontSize, setFontSize] = useState(48);
+  const [isContinue, setIsContinue] = useState(false);
 
   const changeMaxNumber = (e) => {
     const newValue = parseInt(e.target.value, 10);
@@ -66,7 +67,11 @@ export default function App() {
       newItems.push({ name: value, bg: bg, color: "black" });
     }
     setItems(newItems);
-    if (i.length > 18) {
+    if (i.length > 36) {
+      setFontSize(18);
+    } else if (i.length > 27) {
+      setFontSize(24);
+    } else if (i.length > 18) {
       setFontSize(32);
     } else {
       setFontSize(48);
@@ -105,17 +110,28 @@ export default function App() {
 
   const onContinueStart = () => {
     onStart();
-    onStop();
-    if (!items.map((i) => i.name).includes(result)) {
-      setContinueResults(continueResults.concat([result]));
-    }
-    const filteredNames = items.map((i) => i.name).filter((i) => i != result);
-    setTextarea(filteredNames.join("\n"));
-    changeItems(filteredNames);
+    setIsContinue(true);
   };
+
+  const onSpinUp = () => {
+    setTimeout(function() {
+      onStop();
+    }, 2000);
+  }
+
+  const onSpinEnd = (result: string) => {
+    if (isContinue) {
+      setContinueResults(continueResults.concat([result]));
+      const filteredNames = items.map((i) => i.name).filter((i) => i != result);
+      setTextarea(filteredNames.join("\n"));
+      changeItems(filteredNames);
+    }
+  }
 
   const { roulette, onStart, onStop, result } = useRoulette({
     items,
+    onSpinUp: onSpinUp,
+    onSpinEnd: onSpinEnd,
     options: {
       size: 600,
       determineAngle: 0,
@@ -161,7 +177,7 @@ export default function App() {
             <Roulette roulette={roulette} />
             <textarea id="textarea" value={textarea} onChange={textareaChange}>
             </textarea>
-            <div>
+            <div className="continue-number">
               <input
                 id="max"
                 type="number"
@@ -192,7 +208,7 @@ export default function App() {
                 連続抽選
               </button>
               {result ? <p className="result">抽選結果：{result}</p> : <p></p>}
-              {continueResults
+              {continueResults.length !== 0
                 ? (
                   <div>
                     <div className="result">連続抽選結果：</div>

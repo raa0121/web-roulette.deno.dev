@@ -25,7 +25,14 @@ p {
 }
 
 input[type="number"] {
-  font-size: 2rem;
+  font-size: 3rem;
+}
+
+.continue-number {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  height: min-content;
 }
 
 .wrapper {
