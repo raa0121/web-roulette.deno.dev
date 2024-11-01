@@ -100,6 +100,7 @@
     }
   },
   "redirects": {
+    "https://esm.sh/v128/@types/react@~18.2/jsx-runtime~.d.ts": "https://esm.sh/v128/@types/react@18.2.38/jsx-runtime~.d.ts",
     "https://unpkg.com/html-react-parser@latest/dist/html-react-parser.min.js": "https://unpkg.com/html-react-parser@5.1.15/dist/html-react-parser.min.js"
   },
   "remote": {
@@ -401,9 +402,12 @@
     "https://esm.sh/react-hook-roulette@0.0.10?external=react": "ade1de2614ee7119be4426d7a07d2d8dc62412d728a446ed2a29856ac42d16bd",
     "https://esm.sh/react-router-dom@6.3.0/server?external=react": "a52ae3cadafa89c29e8c6826a50847e533818c9cd0d7432d4004dc8da22a487b",
     "https://esm.sh/react@18.2.0/jsx-dev-runtime": "bbba7059cea5ab290b0878f767f42599637c97431d3234b89b08bfaed22a371b",
+    "https://esm.sh/react@18.2.0/jsx-runtime": "914a55a07c388d345c5a0c11616ee5282242e8b8dfd0d505b83500ea04fd9870",
     "https://esm.sh/react@18.2.0?dev": "1fe185734f3d77826efb78a22779899d143bb1160baaf5bbf01edee9f4eaa9d5",
     "https://esm.sh/stable/react@18.2.0/denonext/jsx-dev-runtime.development.js": "24a5496e62e654f88d17e7d70c43f65086d228410bd3b94874f49d6cf6e595e6",
+    "https://esm.sh/stable/react@18.2.0/denonext/jsx-runtime.js": "54d8a51c6ca025380abd2d5302e4a9b38ff835d9759c4657e52314f587eaf6bf",
     "https://esm.sh/stable/react@18.2.0/denonext/react.development.mjs": "88729b33eccbea2c09894f07459f32911777721a3b50fd32151182e82c4351e2",
+    "https://esm.sh/stable/react@18.2.0/denonext/react.mjs": "3c4f23bcfc53b256fcfaf6f834fa9f584c3bb7be667b2682c6cb6ba8ef88f8e6",
     "https://esm.sh/v122/lightningcss-wasm@1.21.0/denonext/browserslistToTargets.js": "8793a933030cf1b7d55a89810259547bff1a959f829604b2155f1f934b5b3d59",
     "https://esm.sh/v122/lightningcss-wasm@1.21.0/denonext/flags.js": "83a70882164acf6f5e97472833fcb17e2ad6b59c8e6295d950bac47b5af43db9",
     "https://esm.sh/v122/lightningcss-wasm@1.21.0/denonext/index.js": "b7a411a6e4e9d51b02267632593a801ad1037e54a32647976722bbbe635c4f12",

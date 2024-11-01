@@ -3,9 +3,6 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Roulette, useRoulette } from "react-hook-roulette";
 
-// Twind
-import { tw } from "./twind/twind.ts";
-
 const colors = [
   "royalblue",
   "salmon",
@@ -35,14 +32,14 @@ export default function App() {
   const [items, setItems] = useState<Item[]>([]);
   const [max, setMax] = useState("");
   const [textarea, setTextarea] = useState("");
-  const [continueResults, setContinueResults] = useState<string>([]);
+  const [continueResults, setContinueResults] = useState<string[]>([]);
   const [fontSize, setFontSize] = useState(48);
   const [isContinue, setIsContinue] = useState(false);
 
-  const changeMaxNumber = (e) => {
+  const changeMaxNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
     if (isNaN(newValue)) {
-      e.prevntDefault();
+      e.preventDefault();
       return;
     }
 
@@ -57,7 +54,7 @@ export default function App() {
       return;
     }
 
-    e.prevntDefault();
+    e.preventDefault();
   };
 
   const changeItems = (i: string[]) => {
@@ -97,13 +94,14 @@ export default function App() {
     return colors[index % colors.length];
   }
 
-  const textareaChange = (e) => {
+  const textareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTextarea(e.target.value);
     changeItems(e.target.value.split("\n"))
+    e.preventDefault();
   };
 
   const createSequential = () => {
-    const seq = Array.from({ length: max }, (elm, index) => String(index + 1));
+    const seq = Array.from({ length: Number(max) }, (_elm, index) => String(index + 1));
     setTextarea(seq.join("\n"));
     changeItems(seq);
   };
