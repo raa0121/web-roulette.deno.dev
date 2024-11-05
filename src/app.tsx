@@ -37,7 +37,9 @@ export default function App() {
   const [fontSize, setFontSize] = useState(48);
   const [isContinue, setIsContinue] = useState(false);
   const ultraMode = useEnv('ULTRA_MODE');
-  const opgImageUrl = ultraMode === 'production' ? 'https://web-roulette.deno.dev' : 'http://localhost:8080';
+  console.log(ultraMode);
+  const ogImageUrl = ultraMode === 'production' ? 'https://web-roulette.deno.dev' : 'http://localhost:8080';
+  console.log(ogImageUrl);
 
   const changeMaxNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
@@ -160,7 +162,7 @@ export default function App() {
           <meta property="og:url" content="https://web-roulette.deno.dev/" />
           <meta property="og:title" content={title} />
           <meta property="og:description" content={description} />
-          <meta property="og:image" content={opgImageUrl + useAsset('/raa0121.png')} />
+          <meta property="og:image" content={ogImageUrl + useAsset("/raa0121.png")} />
           <title>{title}</title>
         </Helmet>
         <link rel="shortcut icon" href={useAsset("/favicon.ico")} />
