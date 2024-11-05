@@ -1,4 +1,5 @@
 import useAsset from "ultra/hooks/use-asset.js";
+import useEnv from "ultra/hooks/use-env.js";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Roulette, useRoulette } from "react-hook-roulette";
@@ -18,23 +19,25 @@ type Item = {
 };
 
 const ALLOWD = [
-  "-",
-  "ArrowLeft",
-  "ArrowRight",
-  "ArrowUp",
-  "ArrowDown",
-  "Backspace",
+  '-',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowUp',
+  'ArrowDown',
+  'Backspace',
 ];
 
 export default function App() {
-  const title = "Webルーレット";
-  const description = "Webルーレット";
+  const title = 'Webルーレット';
+  const description = 'Webルーレット';
   const [items, setItems] = useState<Item[]>([]);
-  const [max, setMax] = useState("");
-  const [textarea, setTextarea] = useState("");
+  const [max, setMax] = useState('');
+  const [textarea, setTextarea] = useState('');
   const [continueResults, setContinueResults] = useState<string[]>([]);
   const [fontSize, setFontSize] = useState(48);
   const [isContinue, setIsContinue] = useState(false);
+  const ultraMode = useEnv('ULTRA_MODE');
+  const opgImageUrl = ultraMode === 'production' ? 'https://web-roulette.deno.dev' : 'http://localhost:8080';
 
   const changeMaxNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
@@ -61,7 +64,7 @@ export default function App() {
     const newItems: Item[] = [];
     for (const [key, value] of i.entries()) {
       const bg = getBgColor(key, i.length);
-      newItems.push({ name: value, bg: bg, color: "black" });
+      newItems.push({ name: value, bg: bg, color: 'black' });
     }
     setItems(newItems);
     if (i.length > 36) {
@@ -157,10 +160,7 @@ export default function App() {
           <meta property="og:url" content="https://web-roulette.deno.dev/" />
           <meta property="og:title" content={title} />
           <meta property="og:description" content={description} />
-          <meta
-            property="og:image"
-            content="https://web-roulette.deno.dev/raa0121.png"
-          />
+          <meta property="og:image" content={opgImageUrl + useAsset('/raa0121.png')} />
           <title>{title}</title>
         </Helmet>
         <link rel="shortcut icon" href={useAsset("/favicon.ico")} />

@@ -19,7 +19,7 @@ jobs:
           deno-version: v1.x
 
       - name: Build site
-        run: deno run -A ./build.ts # Your build script
+        run: ULTRA_MODE=production deno run -A ./build.ts # Your build script
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
