@@ -36,8 +36,7 @@ export default function App() {
   const [continueResults, setContinueResults] = useState<string[]>([]);
   const [fontSize, setFontSize] = useState(48);
   const [isContinue, setIsContinue] = useState(false);
-  const ultraMode = useEnv('ULTRA_MODE');
-  const opgImageUrl = ultraMode === 'production' ? 'https://web-roulette.deno.dev' : 'http://localhost:8080';
+  const opgImageUrl = 'https://web-roulette.deno.dev';
 
   const changeMaxNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
@@ -123,9 +122,11 @@ export default function App() {
   const onSpinEnd = (result: string) => {
     if (isContinue) {
       setContinueResults(continueResults.concat([result]));
-      const filteredNames = items.map((i) => i.name).filter((i) => i != result);
-      setTextarea(filteredNames.join("\n"));
-      changeItems(filteredNames);
+      setTimeout(function() {
+        const filteredNames = items.map((i) => i.name).filter((i) => i != result);
+        setTextarea(filteredNames.join("\n"));
+        changeItems(filteredNames);
+      }, 2000);
     }
   }
 
